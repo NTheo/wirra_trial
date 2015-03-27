@@ -63,13 +63,13 @@ for t = 1:numel(I)
         parts(count,:) = [starti startj endi endj] - 1;
     end
     nnz(occupied == 0)
-    if nnz(occupied == 0) == 0
+    if nnz(occupied == 0) < 3000
         break
     end
 end
-
+%%
 parts = parts(1:count,:);
 f = fopen('output.txt', 'w');
 fprintf(f, '%d\n', count);
-fprintf(f, '%d %d %d %d\n', parts(:,1), parts(:,2), parts(:,3), parts(:,3));
+fprintf(f, '%d %d %d %d\n', parts');%(:,1)', parts(:,2)', parts(:,3)', parts(:,4)');
 fclose(f);

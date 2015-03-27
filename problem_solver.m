@@ -48,10 +48,10 @@ parts = zeros(numel(I), 4);
 for t = 1:numel(I)
 %     t
     [i,j,kernel] = ind2sub(size(scores), I(t));
-    starti = i - floor(Ks(kernel, 1) / 2);
-    startj = j - floor(Ks(kernel, 2) / 2);
-    endi = starti + Ks(kernel, 1);
-    endj = startj + Ks(kernel, 2);
+    starti = i - floor(Ks(kernel, 1) / 2) + 1;
+    startj = j - floor(Ks(kernel, 2) / 2) + 1;
+    endi = starti + Ks(kernel, 1) - 1;
+    endj = startj + Ks(kernel, 2) - 1;
     if starti < 1 || startj < 1 || endi > size(hams, 1) || endj > size(hams, 2)
         continue
     end
@@ -67,7 +67,7 @@ for t = 1:numel(I)
         break
     end
 end
-%%
+
 parts = parts(1:count,:);
 f = fopen('output.txt', 'w');
 fprintf(f, '%d\n', count);

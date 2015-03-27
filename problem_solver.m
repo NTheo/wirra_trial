@@ -14,8 +14,9 @@ for i = 1:size(Ks, 1)
 %     all = all + (concentration == 3);
 %     concentrations{i} = concentration;
     
+
     curmap = prod(Ks(i,:)) ./ concentration;
-    curmap(concentration < 3) = -Inf;
+    curmap(concentration < 3) = -1;
     scores(:,:,i) = curmap;
     continue;
     pause;
@@ -38,19 +39,15 @@ end
 
 occupied = zeros(size(hams));
 
-[sorted_scores, I] = sort(scores, 'descend');
-
-
+[sorted_scores, I] = sort(scores(:), 'descend');
 
 count = 0;
 
 parts = zeros(numel(I), 4);
 
-nnz(~isinf(sorted_scores))
-
 for t = 1:numel(I)
 %     t
-    [i,j,kernel] = ind2sub(size(sorted_scores), I(t));
+    [i,j,kernel] = ind2sub(size(scores), I(t));
     starti = i - floor(Ks(kernel, 1) / 2);
     startj = j - floor(Ks(kernel, 2) / 2);
     endi = starti + Ks(kernel, 1);
@@ -65,9 +62,7 @@ for t = 1:numel(I)
         count = count + 1;
         parts(count,:) = [starti startj endi endj] - 1;
     end
-    if isinf(sorted_scores(t))
-        break
-    end
+    nnz(occupied == 0)
     if nnz(occupied == 0) == 0
         break
     end

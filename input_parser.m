@@ -6,4 +6,4 @@ fclose(f);
 
 hams = (pizza == 'H');
 % hams = padarray(hams, [12 12]);
-imagesc(hams);
+% imagesc(hams);

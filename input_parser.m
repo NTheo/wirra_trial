@@ -5,4 +5,5 @@ pizza = fscanf(f, '%c', [n_rows n_columns]);
 fclose(f);
 
 hams = (pizza == 'H');
+% hams = padarray(hams, [12 12]);
 imagesc(hams);

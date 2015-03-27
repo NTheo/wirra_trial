@@ -4,4 +4,5 @@ n_rows = header(1); n_columns = header(2); max_ham = header(3); max_slots = head
 pizza = fscanf(f, '%c', [n_rows n_columns]);
 fclose(f);
 
-imagesc(pizza);
+hams = (pizza == 'H');
+imagesc(hams);

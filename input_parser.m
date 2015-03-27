@@ -1,6 +1,7 @@
-f = fopen('paris_54000.txt');
-header = fscanf(f, '%d %d %d %d %d', [1 5]);
-n_vertices = header(1); n_edges = header(2); T = header(3); n_cars = header(4); v_0 = header(5);
-coords = fscanf(f, '%f %f', [2 n_vertices]);
-edges = fscanf(f, '%d %d %d %d %d', [5 n_edges]);
+f = fopen('test_round.in');
+header = fscanf(f, '%d %d %d %d', [1 4]);
+n_rows = header(1); n_columns = header(2); max_ham = header(3); max_slots = header(4);
+pizza = fscanf(f, '%c', [n_rows n_columns]);
 fclose(f);
+
+imagesc(pizza);
